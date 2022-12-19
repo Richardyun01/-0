@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int limit(int num)
+{
+    if(num < 0)
+        printf("error\n");
+    else if(num > 120)
+        printf("error\n");
+    else
+        return 1;
+}
+
+int solution(int age) {
+    int answer = 0;
+    answer = 2022 - age + 1;
+    return answer;
+}
