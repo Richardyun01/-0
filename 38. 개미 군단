@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int hp) {
+    int answer = 0;
+    
+    int first = hp / 5;
+    int second = (hp - (first * 5)) / 3;
+    int third = hp - first * 5 - second * 3;
+    
+    answer = first + second + third;
+    
+    return answer;
+}
