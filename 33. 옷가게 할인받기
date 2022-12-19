@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int price) {
+    int answer = 0;
+    int temp = 0;
+    
+    if (price < 100000) {
+        temp = price;
+    } else if (price >= 100000 && price < 300000) {
+        temp = price * 0.95;
+    } else if (price >= 300000 && price < 500000) {
+        temp = price * 0.9;
+    } else if (price >= 500000) {
+        temp = price * 0.8;
+    }
+    
+    answer = temp;
+    
+    return answer;
+}
