@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+// numbers_len은 배열 numbers의 길이입니다.
+int solution(int numbers[], size_t numbers_len) {
+    int answer = 0;
+    int a = 0; //첫번째로 큰 값
+    int b = 0; //두번째로 큰 값
+    int n = numbers_len;
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (numbers[j] > numbers[j+1]) {
+                int temp = numbers[j];
+                numbers[j] = numbers[j+1];
+                numbers[j+1] = temp;
+            }
+        }
+    }
+    
+    a = numbers[n-1];
+    b = numbers[n-2];
+    
+    answer = a * b;
+    
+    return answer;
+}
