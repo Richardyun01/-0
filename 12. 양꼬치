@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int n, int k) {
+    int answer = 0;
+    int shp = n;
+    int drk = k;
+    
+    if (shp < 10) {
+        answer = shp * 12000 + drk * 2000;
+    } else {
+        answer = shp * 12000 + drk * 2000 - shp / 10 * 2000;
+    }
+    
+    return answer;
+}
