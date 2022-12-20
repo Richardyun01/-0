@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int* solution(int denum1, int num1, int denum2, int num2) {
+    // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
+    int* answer = (int*)malloc(1);
+    int multi;
+    int x = (denum1 * num2) + (num1 * denum2);
+    int y = num1 * num2;
+        
+    for (int i = 1; i <= x && i <= y; i++) {
+        if (x % i == 0 && y % i == 0) {
+            multi = i;
+        }
+    }
+    
+    answer[0] = x / multi;
+    answer[1] = y / multi;
+    
+    return answer;
+}
