@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int balls, int share) {
+    long int answer = 1;
+    
+    if (balls == share)
+        answer = 1;
+    else {
+        for (int i = 1; i < share+1; i++) {
+            answer = answer * (balls - i + 1) / i;
+        }
+    }
+    
+    return answer;
+}
