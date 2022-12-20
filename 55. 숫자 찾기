@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+int solution(int num, int k) {
+/** 뒤에서부터 찾기
+    for (int i = 0; num > 0; i++) {
+        if (num % 10 == k) return i;
+        num /= 10;
+    }
+    return -1;
+**/
+    
+    int len, pos = -1;
+    for (len = 0; num > 0; len++) {
+        if (num % 10 == k) pos = len;
+        num /= 10;
+    }
+    if (pos >= 0) pos = len - pos;
+    return pos;
+}
