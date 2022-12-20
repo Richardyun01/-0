@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int M, int N) {
+    int answer = 0;
+    int max, temp;
+    
+    if (M > N) {
+        max = M;
+    } else {
+        max = N;
+    }
+    
+    if (M == 1 && N == 1) {
+        answer = 0;
+    } else if (M == 1 && N == 1) {
+        answer = max - 1;
+    } else {
+        answer = M * N - 1;
+    }
+    
+    return answer;
+}
