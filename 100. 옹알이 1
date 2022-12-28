@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+/**
 // babbling_len은 배열 babbling의 길이입니다.
 // 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
 int check_bab(char* bab) {
@@ -28,12 +29,33 @@ int check_bab(char* bab) {
     
     return 1;
 }
+**/
+
+#define MAX_WORD  4
+
+int check_bob(char *bob)
+{
+    const char *word[MAX_WORD] = {
+        "aya", "ye", "woo", "ma"
+    };
+
+    while (*bob) {
+        int n;
+        for (n = 0; n < MAX_WORD; n++) {
+            if (!strncmp(bob, word[n], strlen(word[n]))) {
+                bob += strlen(word[n]);
+                break;
+            }
+        }
+        if (n == MAX_WORD) return 0;
+    }
+    return 1;
+}
 
 int solution(const char* babbling[], size_t babbling_len) {
     int answer = 0;
     for (int i = 0; i < babbling_len; i++) {
-        answer += check_bab(babbling[i]);
+        answer += check_bob(babbling[i]);
     }
-    
     return answer;
 }
