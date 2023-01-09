@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+// array_len은 배열 array의 길이입니다.
+int solution(int array[], size_t array_len) {
+    int answer = 0;
+    char temp[601];
+    
+    for (int i = 0; i < array_len; i++) {
+        sprintf(temp, "%d", array[i]);
+        for (int j = 0; j < strlen(temp); j++) {
+            if (temp[j] == '7') {
+                answer++;
+            }
+        }
+    }
+    
+    return answer;
+}
