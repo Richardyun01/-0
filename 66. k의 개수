@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+int solution(int i, int j, int k) {
+    int answer = 0;
+    char temp1[100000];
+    char temp2 = k + '0';
+    
+    for (int m = i; m <= j; m++) {
+        sprintf(temp1, "%d", m);
+        for (int n = 0; n < strlen(temp1); n++) {
+            if (temp1[n] == temp2) {
+                answer++;
+            }
+        }
+    }
+    
+    return answer;
+}
