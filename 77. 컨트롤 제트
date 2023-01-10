@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int solution(const char *s)
+{
+    int answer = 0;
+    char *str = strdup(s); // because 's' is const type
+    char *tok, *next;
+    int num;
+
+    tok = strtok_r(str, " ", &next); // get 1st token
+    while (tok) {
+        if (tok[0] == 'Z') {
+            answer -= num;
+        } else {
+            num = atoi(tok);
+            answer += num;
+        }
+
+        tok = strtok_r(NULL, " ", &next); // get next token
+    }
+    free(str);
+
+    return answer;
+}
+
+int solution2(const char *s)
+{
+    int answer = 0;
+    char tok[6], *ptok = tok; // -1000 < s < 1000
+    int num;
+
+    for (const char *ptr = s; *ptr; ptr++) {
+        if (*ptr == ' ') {
+            *ptok = '\0';
+            ptok = tok;
+
+            if (tok[0] == 'Z') {
+                answer -= num;
+            } else {
+                num = atoi(tok);
+                answer += num;
+            }
+        } else {
+            *ptok++ = *ptr;
+        }
+    }
+
+    // process last token
+    if (tok[0] == 'Z') {
+        answer -= num;
+    } else {
+        num = atoi(tok);
+        answer += num;
+    }
+
+    return answer;
+}
