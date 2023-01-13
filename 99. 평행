@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+float gradient(int *d1, int *d2)
+{
+    return (float)(d1[0] - d2[0]) / (d1[1] - d2[1]);
+}
+
+// dots_rows는 2차원 배열 dots의 행 길이, dots_cols는 2차원 배열 dots의 열 길이입니다.
+int solution(int** dots, size_t dots_rows, size_t dots_cols) {
+    //int answer = 0;
+    float grd[6];
+    
+    for (int i = 0, n = 0; i < dots_rows-1; i++) {
+        for (int j = i+1; j < dots_rows; j++) {
+            grd[n++] = gradient(dots[i], dots[j]);
+        }
+    }
+    
+    for (int i = 0; i < 6-1; i++) {
+        for (int j = i+1; j < 6; j++) {
+            if (grd[i] == grd[j]) return 1;
+        }
+    }
+    return 0;
+}
