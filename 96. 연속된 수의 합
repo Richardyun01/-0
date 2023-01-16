@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int *solution(int num, int total)
+{
+    int *answer = malloc(num * sizeof(int));
+
+    // (start+0) + (start+1) + (start+2) + ... + (start+num-1) = total
+    // (num * start) + ((num-1)*num/2) = total
+    int start = (total - (num-1)*num/2) / num;
+    for (int i = 0; i < num; i++)
+        answer[i] = start + i;
+
+    return answer;
+}
