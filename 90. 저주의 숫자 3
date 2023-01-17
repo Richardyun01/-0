@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int is_3x(int n)
+{
+    char str[4]; // 3 digit + null
+    sprintf(str, "%d", n);
+    for (int i = 0; i < 3; i++)
+        if (str[i] == '3') return 1;
+
+    return (n % 3) ? 0 : 1;
+}
+
+int solution(int n)
+{
+    int answer = 0;
+
+    for (int i = 0; i < n; ) {
+        if (!is_3x(++answer)) i++;
+    }
+
+    return answer;
+}
