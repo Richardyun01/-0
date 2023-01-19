@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-char** solution(const char* my_str, int n) {
+char** solution1(const char* my_str, int n) {
     int nseg = (strlen(my_str) + n-1) / n;
 
     // malloc for 2D array
