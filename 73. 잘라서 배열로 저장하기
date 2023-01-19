@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char** solution(const char* my_str, int n) {
+    int nseg = (strlen(my_str) + n-1) / n;
+
+    // malloc for 2D array
+    char** answer = (char**) malloc(nseg * sizeof(char*));
+    for (int i = 0; i < nseg; i++)
+        answer[i] = (char*) calloc((n+1), sizeof(char)); // fill w. NULL
+
+    for (int i = 0, j = 0; *my_str; ) {
+        if (j == n) j = 0, i++;
+        answer[i][j++] = *my_str++;
+    }
+
+    return answer;
+}
