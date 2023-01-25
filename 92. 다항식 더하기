@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char* solution(const char* polynomial) {
+    // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
+    int len = strlen(polynomial);
+    char* answer = (char*)calloc(len + 1, sizeof(char)); // + NULL
+    
+    char* str = strdup(polynomial);
+    char *tok[50], *next;
+    int n = 0;   
+    tok[0] = strtok_r(str, " ", &next); // get 1st token
+    while (tok[n]) {
+        tok[++n] = strtok_r(NULL, " ", &next); // get next token
+    }
+    
+    int nx = 0, nn = 0;
+    for (int i = 0; i < n; i++) {
+        if (tok[i][0] == 'x') {
+            nx++;
+        } else if (tok[i][0] == '+') {
+            // skip
+        } else { // number
+            char *last = tok[i] + strlen(tok[i])-1;
+            if (*last == 'x') {
+                *last = '\0';
+                nx += atoi(tok[i]);
+            } else {
+                nn += atoi(tok[i]);
+            }
+        }
+    }
+
+    if (nx == 0) sprintf(answer, "%d", nn);
+    else if (nn == 0) {
+        if (nx == 1) sprintf(answer, "x");
+        else         sprintf(answer, "%dx", nx);
+    } else {
+        if (nx == 1) sprintf(answer, "x + %d", nn);
+        else         sprintf(answer, "%dx + %d", nx, nn);
+    }
+
+    /**
+    if (nx > 1) {
+        sprintf(answer, "%dx", nx);
+    } else if (nx > 0) {
+        sprintf(answer, "x");
+    }
+    
+    if (nn > 0) {
+        if (nx > 0) strcat(answer, " + ");
+        sprintf(answer+strlen(answer), "%d", nn);
+    } 
+    **/
+    free(str);
+    
+    return answer;
+}
