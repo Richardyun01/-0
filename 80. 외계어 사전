@@ -2,9 +2,11 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define MAX_DIC_LEN 10
+
 int check_dic(const char* dic, const char* spell[], size_t spell_len)
 {
-    char map[11] = {0,}; // init with '0' (max_len(dic) + 1)
+    char map[MAX_DIC_LEN+1] = {0,}; // init with '0' 
 
     for (int i = 0; i < spell_len; i++) {
         int found = 0;
