@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#define MAX_TOKEN 5  // X + Y = Z
+
+int check_quiz(const char* quiz)
+{
+    char* str = strdup(quiz);
+    char *tok[MAX_TOKEN], *next;
+    int n = 0;
+
+    tok[0] = strtok_r(str, " ", &next); // get 1st token
+    while (tok[n]) {
+        tok[++n] = strtok_r(NULL, " ", &next); // get next token
+    }
+
+    int ret, z = atoi(tok[4]);
+    if (tok[1][0] == '+') {
+        ret = atoi(tok[0]) + atoi(tok[2]);
+    } else {
+        ret = atoi(tok[0]) - atoi(tok[2]);
+    }
+    //free(str);
+    
+    return (ret == z);
+}
+
+// quiz_len은 배열 quiz의 길이입니다.
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char** solution(const char* quiz[], size_t quiz_len) {
+    // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
+    char** answer = (char**)malloc(sizeof(char*) * quiz_len);
+    
+    for (int i = 0; i < quiz_len; i++) {
+        if (check_quiz(quiz[i])) {
+            answer[i] = "O";
+        } else {
+            answer[i] = "X";
+        }
+    }
+    
+    return answer;
+}
