@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int check_dic(const char* dic, const char* spell[], size_t spell_len)
+{
+    char map[11] = {0,}; // init with '0' (max_len(dic) + 1)
+
+    for (int i = 0; i < spell_len; i++) {
+        int found = 0;
+        for (int j = 0; j < strlen(dic); j++) {
+            if (spell[i][0] == dic[j]) {
+                found = 1;
+                map[j] = spell[i][0];
+            }
+        }
+        if (found == 0) return 0;
+    }
+
+    return strcmp(dic, map) ? 0 : 1;
+}
+
+int solution(const char* spell[], size_t spell_len, const char* dic[], size_t dic_len) {
+    int answer = 2; // not found
+
+    for (int i = 0; i < dic_len; i++) {
+        if (check_dic(dic[i], spell, spell_len)) {
+            answer = 1; // found
+            break;
+        }
+    }
+    return answer;
+}
